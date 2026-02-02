@@ -3,992 +3,710 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATs Question Bank - Year 6 Maths</title>
+    <title>SATs Question Bank</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f5f5f5;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
+        
+        .header {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            text-align: center;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
+        
         h1 {
-            color: #333;
-            margin-bottom: 10px;
+            color: #2c3e50;
+            margin-bottom: 20px;
         }
-
-        .subtitle {
-            color: #666;
-            font-size: 1.1em;
-        }
-
+        
         .controls {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .form-row {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-bottom: 20px;
         }
-
-        .form-group {
-            margin-bottom: 20px;
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
+        
         label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
+            font-size: 13px;
             font-weight: 600;
+            color: #555;
         }
-
-        select, input[type="number"] {
-            width: 100%;
-            padding: 12px;
+        
+        select {
+            padding: 10px;
             border: 2px solid #e0e0e0;
             border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
+            font-size: 14px;
         }
-
-        select:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: #667eea;
+        
+        .topic-checkboxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            background: white;
         }
-
-        .checkbox-group {
+        
+        .topic-checkbox {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 5px;
+            font-size: 13px;
         }
-
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+        
+        .topic-checkbox input {
             cursor: pointer;
         }
-
-        /* Squared paper background */
-        .squared-paper {
-            background-image: 
-                linear-gradient(0deg, #e0e0e0 1px, transparent 1px),
-                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
-            background-size: 10mm 10mm;
-            background-position: 0 0;
-        }
-
-        .squared-paper-small {
-            background-image: 
-                linear-gradient(0deg, #e0e0e0 1px, transparent 1px),
-                linear-gradient(90deg, #e0e0e0 1px, transparent 1px);
-            background-size: 5mm 5mm;
-            background-position: 0 0;
-        }
-
-        .difficulty-pills {
+        
+        .button-group {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
+            margin-top: 20px;
         }
-
-        .difficulty-pill {
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 2px solid #e0e0e0;
-            background: white;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .difficulty-pill:hover {
-            border-color: #667eea;
-        }
-
-        .difficulty-pill.selected {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
+        
         button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 12px 20px;
             border: none;
-            padding: 15px 40px;
-            font-size: 18px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            width: 100%;
+            font-size: 14px;
             font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        
+        .btn-primary {
+            background: #3498db;
+            color: white;
         }
-
-        button:active {
-            transform: translateY(0);
+        
+        .btn-primary:hover {
+            background: #2980b9;
         }
-
-        #worksheet {
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        #stats {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .worksheet {
             background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 900px;
+            margin: 0 auto;
         }
-
+        
         .worksheet-header {
-            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
             margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
         }
-
+        
         .worksheet-title {
             font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
         }
-
-        .worksheet-info {
-            color: #666;
+        
+        .worksheet-subtitle {
+            color: #7f8c8d;
             font-size: 14px;
         }
-
+        
         .question {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 5px;
-            border-left: 4px solid #667eea;
+            margin-bottom: 25px;
+            page-break-inside: avoid;
         }
-
+        
         .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 10px;
         }
-
+        
         .question-number {
             font-weight: bold;
-            color: #667eea;
-            font-size: 18px;
+            color: #2c3e50;
+            font-size: 16px;
         }
-
+        
         .question-badges {
             display: flex;
             gap: 8px;
             align-items: center;
         }
-
-        .question-marks {
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 14px;
-        }
-
+        
         .difficulty-badge {
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: 600;
         }
-
+        
         .difficulty-easy {
-            background: #c8e6c9;
-            color: #2e7d32;
+            background: #d4edda;
+            color: #155724;
         }
-
+        
         .difficulty-medium {
-            background: #fff9c4;
-            color: #f57f17;
+            background: #fff3cd;
+            color: #856404;
         }
-
+        
         .difficulty-hard {
-            background: #ffcdd2;
-            color: #c62828;
+            background: #f8d7da;
+            color: #721c24;
         }
-
-        .question-text {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .question-meta {
+        
+        .question-marks {
             font-size: 12px;
-            color: #999;
-            margin-top: 10px;
+            color: #7f8c8d;
         }
-
-        .answer {
-            margin-top: 15px;
-            padding: 15px;
-            background: #e8f5e9;
-            border-radius: 5px;
-            border-left: 4px solid #4caf50;
+        
+        .question-image {
+            width: 100%;
+            max-width: 650px;
+            height: auto;
+            display: block;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            image-rendering: crisp-edges;
         }
-
-        .answer-label {
+        
+        .question-image-container {
+            position: relative;
+            display: inline-block;
+            max-width: 650px;
+            width: 100%;
+        }
+        
+        .question-number-overlay {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #1565c0;
+            color: white;
+            font-size: 22px;
             font-weight: bold;
-            color: #2e7d32;
+            padding: 10px 18px;
+            border-radius: 4px;
+            z-index: 10;
+            min-width: 55px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .question-topics {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        .topic-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        
+        .answer {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .answer-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
             margin-bottom: 5px;
         }
-
+        
         .answer-text {
-            color: #1b5e20;
             font-size: 16px;
+            color: #27ae60;
+            font-weight: 700;
         }
-
-        .print-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
+        
+        .question-meta {
+            font-size: 11px;
+            color: #95a5a6;
+            margin-top: 8px;
         }
-
-        .print-button {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .no-questions {
+        
+        .empty-state {
             text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 18px;
+            padding: 60px 20px;
+            color: #95a5a6;
         }
-
-        .stats {
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: #f0f0f0;
-            border-radius: 5px;
-            color: #666;
-        }
-
-        .filter-info {
-            background: #e3f2fd;
-            padding: 12px;
-            border-radius: 5px;
-            margin-top: 15px;
-            font-size: 14px;
-            color: #1565c0;
-        }
-
-        .edit-panel {
-            margin-top: 15px;
-            padding: 15px;
-            background: #fff3e0;
-            border-radius: 5px;
-            border-left: 4px solid #ff9800;
-        }
-
-        .edit-panel h4 {
-            margin: 0 0 10px 0;
-            color: #e65100;
-        }
-
-        .topic-checkboxes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .topic-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 14px;
-        }
-
-        .edit-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .edit-buttons button {
-            padding: 8px 16px;
-            font-size: 14px;
-            flex: 1;
-        }
-
-        .save-btn {
-            background: linear-gradient(135deg, #43a047 0%, #1b5e20 100%);
-        }
-
-        .cancel-btn {
-            background: linear-gradient(135deg, #757575 0%, #424242 100%);
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
-            margin-top: 20px;
-        }
-
+        
         @media print {
             body {
                 background: white;
                 padding: 0;
             }
-
-            .container {
-                max-width: 100%;
+            
+            .header {
+                display: none;
             }
-
-            .controls, .print-buttons, .question-meta, .difficulty-badge {
-                display: none !important;
-            }
-
-            #worksheet {
+            
+            .worksheet {
                 box-shadow: none;
                 padding: 20px;
             }
-
-            .question {
-                page-break-inside: avoid;
-            }
-
-            .answer {
-                display: var(--print-answers, none);
-            }
-
-            /* Maintain squared paper background when printing */
-            .squared-paper {
-                background-image: 
-                    linear-gradient(0deg, #d0d0d0 1px, transparent 1px),
-                    linear-gradient(90deg, #d0d0d0 1px, transparent 1px);
-                background-size: 10mm 10mm;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .squared-paper-small {
-                background-image: 
-                    linear-gradient(0deg, #d0d0d0 1px, transparent 1px),
-                    linear-gradient(90deg, #d0d0d0 1px, transparent 1px);
-                background-size: 5mm 5mm;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            header, .controls, #worksheet {
-                padding: 20px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .print-buttons {
-                flex-direction: column;
-            }
-
-            .print-button {
-                width: 100%;
+            
+            .question-meta {
+                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📚 SATs Question Bank</h1>
-            <p class="subtitle">Year 6 Maths - Past Paper Questions by Topic</p>
-        </header>
-
+    <div class="header">
+        <h1>📚 SATs Question Bank</h1>
+        
         <div class="controls">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="topic">Select Topic:</label>
-                    <select id="topic">
-                        <option value="">-- Choose a topic --</option>
-                        <optgroup label="Number Operations">
-                            <option value="Addition">Addition</option>
-                            <option value="Subtraction">Subtraction</option>
-                            <option value="Multiplication">Multiplication</option>
-                            <option value="Division">Division</option>
-                            <option value="Long Division">Long Division</option>
-                            <option value="Long Multiplication">Long Multiplication</option>
-                        </optgroup>
-                        <optgroup label="Fractions, Decimals & Percentages">
-                            <option value="Fractions">Fractions</option>
-                            <option value="Decimals">Decimals</option>
-                            <option value="Percentages">Percentages</option>
-                            <option value="Ratio">Ratio & Proportion</option>
-                        </optgroup>
-                        <optgroup label="Measurement">
-                            <option value="Area">Area</option>
-                            <option value="Perimeter">Perimeter</option>
-                            <option value="Volume">Volume</option>
-                            <option value="Time">Time</option>
-                            <option value="Money">Money</option>
-                            <option value="Measurement">Measurement & Converting Units</option>
-                        </optgroup>
-                        <optgroup label="Geometry">
-                            <option value="Geometry">Properties of Shapes</option>
-                            <option value="Angles">Angles</option>
-                            <option value="Coordinates">Coordinates</option>
-                        </optgroup>
-                        <optgroup label="Other">
-                            <option value="Statistics">Statistics</option>
-                            <option value="Algebra">Algebra</option>
-                        </optgroup>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="numQuestions">Number of Questions:</label>
-                    <input type="number" id="numQuestions" min="1" max="50" value="10">
-                </div>
+            <div class="control-group" style="grid-column: 1 / -1;">
+                <label>Topics (select multiple)</label>
+                <div class="topic-checkboxes" id="topicCheckboxes"></div>
             </div>
-
-            <div class="form-group">
-                <label>Difficulty Level (optional):</label>
-                <div class="difficulty-pills">
-                    <div class="difficulty-pill" data-difficulty="Easy" onclick="toggleDifficulty(this)">Easy</div>
-                    <div class="difficulty-pill" data-difficulty="Medium" onclick="toggleDifficulty(this)">Medium</div>
-                    <div class="difficulty-pill" data-difficulty="Hard" onclick="toggleDifficulty(this)">Hard</div>
-                </div>
-                <div style="font-size: 12px; color: #999; margin-top: 8px;">Leave unselected to include all difficulty levels</div>
-            </div>
-
-            <div class="form-group">
-                <div class="checkbox-group">
-                    <input type="checkbox" id="showAnswers" checked>
-                    <label for="showAnswers" style="margin-bottom: 0;">Show answers on worksheet</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="paperType">Paper Type for Printing:</label>
-                <select id="paperType">
-                    <option value="plain">Plain Paper</option>
-                    <option value="squared-10mm">Squared Paper (10mm grid)</option>
-                    <option value="squared-5mm">Squared Paper (5mm grid)</option>
+            
+            <div class="control-group">
+                <label>Difficulty</label>
+                <select id="difficultyFilter">
+                    <option value="all">All</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
                 </select>
             </div>
-
-            <button onclick="generateWorksheet()">Generate Worksheet</button>
-
-            <div style="margin-top: 15px; text-align: center;">
-                <button onclick="toggleEditMode()" style="background: linear-gradient(135deg, #43a047 0%, #1b5e20 100%); padding: 10px 20px; font-size: 14px;">
-                    📝 Enable Edit Mode
-                </button>
+            
+            <div class="control-group">
+                <label>Year</label>
+                <select id="yearFilter">
+                    <option value="all">All Years</option>
+                </select>
             </div>
-
-            <div class="stats" id="stats"></div>
-            <div class="filter-info" id="filterInfo" style="display: none;"></div>
+            
+            <div class="control-group">
+                <label>Paper</label>
+                <select id="paperFilter">
+                    <option value="all">All Papers</option>
+                    <option value="1">Paper 1 (Arithmetic)</option>
+                    <option value="2">Paper 2 (Reasoning)</option>
+                    <option value="3">Paper 3 (Reasoning)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Number of Questions</label>
+                <select id="questionLimit">
+                    <option value="all">All Questions</option>
+                    <option value="5">5 questions</option>
+                    <option value="10" selected>10 questions</option>
+                    <option value="15">15 questions</option>
+                    <option value="20">20 questions</option>
+                    <option value="30">30 questions</option>
+                </select>
+            </div>
         </div>
-
-        <div id="worksheet">
-            <div class="worksheet-header">
-                <div class="worksheet-title" id="worksheetTitle"></div>
-                <div class="worksheet-info" id="worksheetInfo"></div>
-            </div>
-            <div id="questions"></div>
-            <div class="print-buttons">
-                <button class="print-button" onclick="printWorksheet(false)">🖨️ Print Questions Only</button>
-                <button class="print-button" onclick="printWorksheet(true)">🖨️ Print with Answers</button>
-            </div>
+        
+        <div class="button-group">
+            <button class="btn-primary" onclick="regenerateWorksheet()">🔄 Generate Worksheet</button>
+            <button class="btn-success" onclick="toggleAnswers()">👁️ Toggle Answers</button>
+            <button class="btn-secondary" onclick="toggleEditMode()" id="editModeBtn">✏️ Edit Mode</button>
+            <button class="btn-secondary" onclick="printWorksheet()">🖨️ Print Worksheet</button>
+            <button class="btn-secondary" onclick="printAnswerSheet()">📄 Print Answer Sheet</button>
+            <button class="btn-success" onclick="downloadJSON()" id="downloadBtn" style="display: none;">⬇️ Download Updated JSON</button>
+        </div>
+        
+        <div id="stats"></div>
+    </div>
+    
+    <div class="worksheet" id="worksheet">
+        <div class="empty-state">
+            <p>Loading questions...</p>
         </div>
     </div>
-
+    
     <script>
         let questionsData = [];
-        let selectedDifficulties = [];
+        let showAnswers = false;
         let editMode = false;
-        let currentEditingQuestion = null;
-
-        // All available topics
-        const ALL_TOPICS = [
-            "Addition", "Subtraction", "Multiplication", "Division",
-            "Long Division", "Long Multiplication",
-            "Fractions", "Decimals", "Percentages", "Ratio",
-            "Area", "Perimeter", "Volume", "Time", "Money", "Measurement",
-            "Geometry", "Angles", "Coordinates",
-            "Statistics", "Algebra"
-        ];
-
-        // Load questions from JSON file OR use embedded data
-        // Try to load external file first
+        const imageFolder = 'images/';
+        
+        // Load questions
         fetch('questions.json')
             .then(response => {
                 if (!response.ok) throw new Error('File not found');
                 return response.json();
             })
             .then(data => {
+                console.log('Loaded data:', data);
+                if (!data.questions || !Array.isArray(data.questions)) {
+                    throw new Error('Invalid JSON format - missing questions array');
+                }
                 questionsData = data.questions;
-                updateStats();
+                console.log('Loaded questions:', questionsData.length);
+                initializeFilters();
+                regenerateWorksheet();
             })
             .catch(error => {
-                console.log('Could not load questions.json, using embedded sample data');
-                // Embedded sample data (replace with your questions later)
-                questionsData = [
-                    {
-                        "id": 1,
-                        "year": 2024,
-                        "paper": 1,
-                        "question_number": 1,
-                        "topic": ["Long Division"],
-                        "difficulty": "Medium",
-                        "marks": 1,
-                        "question": "672 ÷ 8 =",
-                        "answer": "84"
-                    },
-                    {
-                        "id": 2,
-                        "year": 2024,
-                        "paper": 1,
-                        "question_number": 5,
-                        "topic": ["Long Division"],
-                        "difficulty": "Hard",
-                        "marks": 2,
-                        "question": "4,368 ÷ 6 =",
-                        "answer": "728"
-                    },
-                    {
-                        "id": 3,
-                        "year": 2024,
-                        "paper": 1,
-                        "question_number": 15,
-                        "topic": ["Fractions", "Multiplication"],
-                        "difficulty": "Medium",
-                        "marks": 1,
-                        "question": "3/4 × 16 =",
-                        "answer": "12"
-                    },
-                    {
-                        "id": 4,
-                        "year": 2023,
-                        "paper": 1,
-                        "question_number": 3,
-                        "topic": ["Percentages"],
-                        "difficulty": "Easy",
-                        "marks": 1,
-                        "question": "Find 25% of 80",
-                        "answer": "20"
-                    }
-                ];
-                updateStats();
-                alert('⚠️ Using sample data (4 questions)\n\nTo use your full question bank:\n\n1. Use Python web server (see FIXING_JSON_LOAD_ERROR.txt)\nOR\n2. Deploy to GitHub Pages\nOR\n3. Use the embedded version I can create');
+                console.error('Error:', error);
+                document.getElementById('worksheet').innerHTML = `
+                    <div class="empty-state">
+                        <p>❌ Error: ${error.message}</p>
+                        <p style="font-size: 12px; margin-top: 10px;">Check browser console (F12) for details</p>
+                    </div>
+                `;
             });
-
-        function toggleEditMode() {
-            editMode = !editMode;
-            const btn = event.target;
+        
+        function initializeFilters() {
+            // Populate topic checkboxes
+            const topics = [...new Set(questionsData.flatMap(q => q.topic))].sort();
+            const topicCheckboxes = document.getElementById('topicCheckboxes');
             
-            if (editMode) {
-                btn.textContent = '✓ Edit Mode Enabled';
-                btn.style.background = 'linear-gradient(135deg, #f57c00 0%, #e65100 100%)';
-                alert('Edit Mode Enabled!\n\nNow when you generate a worksheet, you can click on any question to edit its topics.\n\nWhen done, click "Download Updated Database" to save your changes.');
-            } else {
-                btn.textContent = '📝 Enable Edit Mode';
-                btn.style.background = 'linear-gradient(135deg, #43a047 0%, #1b5e20 100%)';
-            }
+            // Add "All" checkbox
+            const allLabel = document.createElement('label');
+            allLabel.className = 'topic-checkbox';
+            allLabel.innerHTML = `
+                <input type="checkbox" value="all" id="topicAll" onchange="toggleAllTopics()">
+                <strong>All Topics</strong>
+            `;
+            topicCheckboxes.appendChild(allLabel);
+            
+            // Add individual topic checkboxes (unchecked by default)
+            topics.forEach(topic => {
+                const label = document.createElement('label');
+                label.className = 'topic-checkbox';
+                label.innerHTML = `
+                    <input type="checkbox" value="${topic}" class="topic-item" onchange="updateAllCheckbox()">
+                    ${topic}
+                `;
+                topicCheckboxes.appendChild(label);
+            });
+            
+            // Populate years
+            const years = [...new Set(questionsData.map(q => q.year))].sort().reverse();
+            const yearFilter = document.getElementById('yearFilter');
+            years.forEach(year => {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                yearFilter.appendChild(option);
+            });
         }
-
-        function editQuestion(questionId) {
-            if (!editMode) return;
+        
+        function toggleAllTopics() {
+            const allCheckbox = document.getElementById('topicAll');
+            const topicCheckboxes = document.querySelectorAll('.topic-item');
+            topicCheckboxes.forEach(cb => cb.checked = allCheckbox.checked);
+        }
+        
+        function updateAllCheckbox() {
+            const topicCheckboxes = document.querySelectorAll('.topic-item');
+            const allChecked = Array.from(topicCheckboxes).every(cb => cb.checked);
+            document.getElementById('topicAll').checked = allChecked;
+        }
+        
+        function regenerateWorksheet() {
+            const difficultyFilter = document.getElementById('difficultyFilter').value;
+            const yearFilter = document.getElementById('yearFilter').value;
+            const paperFilter = document.getElementById('paperFilter').value;
+            const questionLimit = document.getElementById('questionLimit').value;
             
-            currentEditingQuestion = questionsData.find(q => q.id === questionId);
-            if (!currentEditingQuestion) return;
+            // Get selected topics
+            const selectedTopics = Array.from(document.querySelectorAll('.topic-item:checked'))
+                .map(cb => cb.value);
             
-            // Find the question element
-            const questionElements = document.querySelectorAll('.question');
-            let questionElement = null;
-            
-            questionElements.forEach(el => {
-                if (el.dataset.questionId == questionId) {
-                    questionElement = el;
+            let filtered = questionsData.filter(q => {
+                // Topic filter - check if question has any selected topic
+                if (selectedTopics.length > 0 && !q.topic.some(t => selectedTopics.includes(t))) {
+                    return false;
                 }
+                if (difficultyFilter !== 'all' && q.difficulty !== difficultyFilter) return false;
+                if (yearFilter !== 'all' && q.year != yearFilter) return false;
+                if (paperFilter !== 'all' && q.paper != paperFilter) return false;
+                return true;
             });
             
-            if (!questionElement) return;
+            // Apply question limit
+            if (questionLimit !== 'all') {
+                const limit = parseInt(questionLimit);
+                filtered = filtered.slice(0, limit);
+            }
             
-            // Create edit panel
-            const existingPanel = questionElement.querySelector('.edit-panel');
-            if (existingPanel) {
-                existingPanel.remove();
+            renderWorksheet(filtered);
+            updateStats(filtered);
+        }
+        
+        function renderWorksheet(questions) {
+            const worksheet = document.getElementById('worksheet');
+            
+            if (questions.length === 0) {
+                worksheet.innerHTML = `
+                    <div class="empty-state">
+                        <p>🔍 No questions match your filters</p>
+                    </div>
+                `;
                 return;
             }
             
-            const editPanel = document.createElement('div');
-            editPanel.className = 'edit-panel';
+            // Get selected topics for title
+            const selectedTopics = Array.from(document.querySelectorAll('.topic-item:checked'))
+                .map(cb => cb.nextSibling.textContent.trim());
+            const topicText = selectedTopics.length === 0 || selectedTopics.length > 5
+                ? 'Mixed Topics'
+                : selectedTopics.join(', ');
             
-            let topicsHTML = '<div class="topic-checkboxes">';
-            ALL_TOPICS.forEach(topic => {
-                const checked = currentEditingQuestion.topic.includes(topic) ? 'checked' : '';
-                topicsHTML += `
-                    <label class="topic-checkbox">
-                        <input type="checkbox" value="${topic}" ${checked}>
-                        ${topic}
-                    </label>
-                `;
-            });
-            topicsHTML += '</div>';
-            
-            const currentAnswer = currentEditingQuestion.answer || '';
-            const answerStyle = currentAnswer === 'NEEDS_ANSWER' ? 'background: #ffebee; border: 2px solid #c62828;' : '';
-            
-            editPanel.innerHTML = `
-                <h4>Edit Question ${currentEditingQuestion.question_number} (${currentEditingQuestion.year} Paper ${currentEditingQuestion.paper})</h4>
-                
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Topics:</label>
-                    ${topicsHTML}
+            worksheet.innerHTML = `
+                <div class="worksheet-header">
+                    <div class="worksheet-title">${topicText} - Practice Worksheet</div>
+                    <div class="worksheet-subtitle">${questions.length} question${questions.length !== 1 ? 's' : ''} | ${questions.reduce((sum, q) => sum + q.marks, 0)} marks | Generated: ${new Date().toLocaleDateString()}</div>
                 </div>
-                
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Answer:</label>
-                    <input type="text" 
-                           id="answer-input-${questionId}" 
-                           value="${currentAnswer}" 
-                           placeholder="Enter the answer here"
-                           style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px; ${answerStyle}">
-                    ${currentAnswer === 'NEEDS_ANSWER' ? '<div style="color: #c62828; font-size: 12px; margin-top: 5px;">⚠️ This answer needs to be added</div>' : ''}
-                </div>
-                
-                <div style="margin-bottom: 15px;">
-                    <label style="display: block; margin-bottom: 5px; font-weight: 600;">Difficulty:</label>
-                    <select id="difficulty-select-${questionId}" style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
-                        <option value="Easy" ${currentEditingQuestion.difficulty === 'Easy' ? 'selected' : ''}>Easy</option>
-                        <option value="Medium" ${currentEditingQuestion.difficulty === 'Medium' ? 'selected' : ''}>Medium</option>
-                        <option value="Hard" ${currentEditingQuestion.difficulty === 'Hard' ? 'selected' : ''}>Hard</option>
-                    </select>
-                </div>
-                
-                <div class="edit-buttons">
-                    <button class="save-btn" onclick="saveQuestionEdit(${questionId})">Save Changes</button>
-                    <button class="cancel-btn" onclick="cancelEdit(${questionId})">Cancel</button>
-                </div>
+                ${questions.map((q, index) => `
+                    <div class="question" ${editMode ? `style="border-left: 4px solid #ff9800; cursor: pointer;" onclick="editQuestion(${q.id})"` : ''}>
+                        ${editMode ? '<div style="background: #fff3e0; padding: 8px; border-radius: 3px; margin-bottom: 10px; font-size: 12px; color: #e65100;">🖊️ Click to edit answer</div>' : ''}
+                        <div class="question-header">
+                            <span class="question-number">Question ${index + 1}</span>
+                            <div class="question-badges">
+                                <span class="difficulty-badge difficulty-${q.difficulty.toLowerCase()}">${q.difficulty}</span>
+                                <span class="question-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
+                            </div>
+                        </div>
+                        <div class="question-image-container">
+                            <div class="question-number-overlay">${index + 1}</div>
+                            <img src="${imageFolder}${q.image}" 
+                                 alt="Question ${index + 1}" 
+                                 class="question-image"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display:none; padding: 20px; background: #f8d7da; border-radius: 4px; color: #721c24;">
+                                Image not found: ${q.image}
+                            </div>
+                        </div>
+                        <div class="question-topics">
+                            ${q.topic.map(t => `<span class="topic-tag">${t}</span>`).join('')}
+                        </div>
+                        <div class="question-meta">Year: ${q.year} | Paper: ${q.paper} | Q${q.question_number}</div>
+                        ${(showAnswers || editMode) ? `
+                            <div class="answer">
+                                <div class="answer-label">Answer:</div>
+                                <div class="answer-text">${q.answer}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                `).join('')}
             `;
-            
-            questionElement.appendChild(editPanel);
         }
-
-        function saveQuestionEdit(questionId) {
+        
+        function updateStats(questions) {
+            const stats = document.getElementById('stats');
+            const topics = new Set(questions.flatMap(q => q.topic));
+            const totalMarks = questions.reduce((sum, q) => sum + q.marks, 0);
+            
+            stats.innerHTML = `
+                <strong>Current Worksheet:</strong> ${questions.length} question${questions.length !== 1 ? 's' : ''} | 
+                ${totalMarks} marks | 
+                ${topics.size} topic${topics.size !== 1 ? 's' : ''}
+            `;
+        }
+        
+        function toggleAnswers() {
+            showAnswers = !showAnswers;
+            regenerateWorksheet();
+        }
+        
+        function printWorksheet() {
+            const wasShowing = showAnswers;
+            showAnswers = false;
+            regenerateWorksheet();
+            setTimeout(() => {
+                window.print();
+                showAnswers = wasShowing;
+                regenerateWorksheet();
+            }, 100);
+        }
+        
+        function printAnswerSheet() {
+            const wasShowing = showAnswers;
+            showAnswers = true;
+            regenerateWorksheet();
+            setTimeout(() => {
+                window.print();
+                showAnswers = wasShowing;
+                regenerateWorksheet();
+            }, 100);
+        }
+        
+        function toggleEditMode() {
+            editMode = !editMode;
+            const btn = document.getElementById('editModeBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            
+            if (editMode) {
+                btn.style.background = '#ff9800';
+                btn.textContent = '✏️ Exit Edit Mode';
+                downloadBtn.style.display = 'inline-block';
+            } else {
+                btn.style.background = '';
+                btn.textContent = '✏️ Edit Mode';
+                downloadBtn.style.display = 'none';
+            }
+            
+            regenerateWorksheet();
+        }
+        
+        function editQuestion(questionId) {
+            if (!editMode) return;
+            
             const question = questionsData.find(q => q.id === questionId);
             if (!question) return;
             
-            const questionElements = document.querySelectorAll('.question');
-            let editPanel = null;
+            // Create edit panel
+            const allTopics = [...new Set(questionsData.flatMap(q => q.topic))].sort();
             
-            questionElements.forEach(el => {
-                if (el.dataset.questionId == questionId) {
-                    editPanel = el.querySelector('.edit-panel');
-                }
-            });
+            let html = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                            background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3); 
+                            max-width: 600px; z-index: 1000; max-height: 80vh; overflow-y: auto;">
+                    <h3 style="margin-bottom: 20px;">Edit Question ${question.question_number}</h3>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+                        <strong>Question:</strong><br>
+                        ${question.question}
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 10px;">Answer:</label>
+                        <input type="text" id="editAnswer" value="${question.answer}" 
+                               style="width: 100%; padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; font-size: 14px;">
+                    </div>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <label style="display: block; font-weight: 600; margin-bottom: 10px;">Topics (select all that apply):</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 200px; overflow-y: auto; 
+                                    padding: 10px; border: 2px solid #e0e0e0; border-radius: 5px; background: white;">
+                            ${allTopics.map(topic => `
+                                <label style="display: flex; align-items: center; gap: 5px; font-size: 13px;">
+                                    <input type="checkbox" class="edit-topic-checkbox" value="${topic}" 
+                                           ${question.topic.includes(topic) ? 'checked' : ''}>
+                                    ${topic}
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button onclick="closeEditPanel()" 
+                                style="padding: 10px 20px; background: #95a5a6; color: white; border: none; 
+                                       border-radius: 5px; cursor: pointer; font-weight: 600;">Cancel</button>
+                        <button onclick="saveEdit(${questionId})" 
+                                style="padding: 10px 20px; background: #27ae60; color: white; border: none; 
+                                       border-radius: 5px; cursor: pointer; font-weight: 600;">Save Changes</button>
+                    </div>
+                </div>
+                <div onclick="closeEditPanel()" 
+                     style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999;"></div>
+            `;
             
-            if (!editPanel) return;
+            const panel = document.createElement('div');
+            panel.id = 'editPanel';
+            panel.innerHTML = html;
+            document.body.appendChild(panel);
+        }
+        
+        function closeEditPanel() {
+            const panel = document.getElementById('editPanel');
+            if (panel) panel.remove();
+        }
+        
+        function saveEdit(questionId) {
+            const question = questionsData.find(q => q.id === questionId);
+            if (!question) return;
+            
+            // Get new answer
+            const newAnswer = document.getElementById('editAnswer').value.trim();
+            if (!newAnswer) {
+                alert('Answer cannot be empty!');
+                return;
+            }
             
             // Get selected topics
-            const checkboxes = editPanel.querySelectorAll('input[type="checkbox"]:checked');
-            const newTopics = Array.from(checkboxes).map(cb => cb.value);
+            const selectedTopics = Array.from(document.querySelectorAll('.edit-topic-checkbox:checked'))
+                .map(cb => cb.value);
             
-            if (newTopics.length === 0) {
+            if (selectedTopics.length === 0) {
                 alert('Please select at least one topic!');
                 return;
             }
             
-            // Get answer
-            const answerInput = document.getElementById(`answer-input-${questionId}`);
-            const newAnswer = answerInput ? answerInput.value.trim() : question.answer;
-            
-            if (!newAnswer) {
-                const proceed = confirm('Answer is empty. Do you want to save anyway?');
-                if (!proceed) return;
-            }
-            
-            // Get difficulty
-            const difficultySelect = document.getElementById(`difficulty-select-${questionId}`);
-            const newDifficulty = difficultySelect ? difficultySelect.value : question.difficulty;
-            
-            // Update the question
-            const oldAnswer = question.answer;
-            question.topic = newTopics;
+            // Update question
             question.answer = newAnswer;
-            question.difficulty = newDifficulty;
+            question.topic = selectedTopics;
             
-            // Remove edit panel
-            editPanel.remove();
-            
-            // Show success message with what changed
-            let changes = [];
-            if (oldAnswer !== newAnswer) {
-                changes.push('answer');
-            }
-            if (JSON.stringify(question.topic.sort()) !== JSON.stringify(newTopics.sort())) {
-                changes.push('topics');
-            }
-            changes.push('difficulty');
-            
-            const changeText = changes.length > 0 ? ` (${changes.join(', ')} updated)` : '';
-            alert(`Changes saved${changeText}!\n\nClick "Download Updated Database" when done to save all changes.`);
-            
-            // Refresh display to show changes
+            closeEditPanel();
             regenerateWorksheet();
+            alert('✅ Changes saved! Click "Download Updated JSON" when done editing.');
         }
-
-        function cancelEdit(questionId) {
-            const questionElements = document.querySelectorAll('.question');
-            questionElements.forEach(el => {
-                if (el.dataset.questionId == questionId) {
-                    const editPanel = el.querySelector('.edit-panel');
-                    if (editPanel) {
-                        editPanel.remove();
-                    }
-                }
-            });
-        }
-
-        function regenerateWorksheet() {
-            const topic = document.getElementById('topic').value;
-            const numQuestions = parseInt(document.getElementById('numQuestions').value);
-            const showAnswers = document.getElementById('showAnswers').checked;
+        
+        function downloadJSON() {
+            const json = JSON.stringify({questions: questionsData}, null, 2);
+            const blob = new Blob([json], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
             
-            if (!topic) return;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'questions_updated.json';
+            a.click();
             
-            // Filter and display again
-            let filteredQuestions = questionsData.filter(q => 
-                q.topic.some(t => t.toLowerCase().includes(topic.toLowerCase()))
-            );
-            
-            if (selectedDifficulties.length > 0) {
-                filteredQuestions = filteredQuestions.filter(q => 
-                    selectedDifficulties.includes(q.difficulty)
-                );
-            }
-            
-            const selectedQuestions = filteredQuestions.slice(0, Math.min(numQuestions, filteredQuestions.length));
-            displayWorksheet(selectedQuestions, topic, showAnswers);
-        }
-
-        function downloadUpdatedDatabase() {
-            const dataStr = JSON.stringify({questions: questionsData}, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'questions_updated.json';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
             URL.revokeObjectURL(url);
-            
-            alert('Database downloaded as "questions_updated.json"!\n\nReplace your old questions.json with this file to save your changes.');
-        }
-
-        function toggleDifficulty(element) {
-            element.classList.toggle('selected');
-            const difficulty = element.dataset.difficulty;
-            
-            if (selectedDifficulties.includes(difficulty)) {
-                selectedDifficulties = selectedDifficulties.filter(d => d !== difficulty);
-            } else {
-                selectedDifficulties.push(difficulty);
-            }
-        }
-
-        function updateStats() {
-            const statsDiv = document.getElementById('stats');
-            const totalQuestions = questionsData.length;
-            const topics = [...new Set(questionsData.flatMap(q => q.topic))];
-            const years = [...new Set(questionsData.map(q => q.year))].sort();
-            const needsAnswer = questionsData.filter(q => q.answer === 'NEEDS_ANSWER' || !q.answer).length;
-            const hasAnswer = totalQuestions - needsAnswer;
-            
-            const answerPercentage = totalQuestions > 0 ? Math.round((hasAnswer / totalQuestions) * 100) : 0;
-            const answerStyle = needsAnswer > 0 ? 'color: #c62828; font-weight: bold;' : 'color: #43a047; font-weight: bold;';
-            
-            statsDiv.innerHTML = `
-                Database: ${totalQuestions} questions | ${topics.length} topics | Years: ${years.join(', ')}<br>
-                <span style="${answerStyle}">Answers: ${hasAnswer}/${totalQuestions} (${answerPercentage}%)</span>
-                ${needsAnswer > 0 ? ` | <span style="color: #c62828;">${needsAnswer} need answers</span>` : ' | ✓ All answers complete!'}
-            `;
-        }
-
-        function generateWorksheet() {
-            const topic = document.getElementById('topic').value;
-            const numQuestions = parseInt(document.getElementById('numQuestions').value);
-            const showAnswers = document.getElementById('showAnswers').checked;
-
-            if (!topic) {
-                alert('Please select a topic first!');
-                return;
-            }
-
-            // Filter questions by topic
-            let filteredQuestions = questionsData.filter(q => 
-                q.topic.some(t => t.toLowerCase().includes(topic.toLowerCase()))
-            );
-
-            // Apply difficulty filter if any selected
-            if (selectedDifficulties.length > 0) {
-                filteredQuestions = filteredQuestions.filter(q => 
-                    selectedDifficulties.includes(q.difficulty)
-                );
-            }
-
-            if (filteredQuestions.length === 0) {
-                const filterMsg = selectedDifficulties.length > 0 
-                    ? `No ${selectedDifficulties.join('/')} questions found for this topic.` 
-                    : 'No questions found for this topic yet.';
-                alert(filterMsg + ' Try selecting different difficulty levels or more questions will be added soon!');
-                return;
-            }
-
-            // Show filter info
-            const filterInfoDiv = document.getElementById('filterInfo');
-            if (selectedDifficulties.length > 0) {
-                filterInfoDiv.style.display = 'block';
-                filterInfoDiv.innerHTML = `📊 Showing ${filteredQuestions.length} ${selectedDifficulties.join('/')} question(s) for ${topic}`;
-            } else {
-                filterInfoDiv.style.display = 'none';
-            }
-
-            // Shuffle and limit to requested number
-            const shuffled = filteredQuestions.sort(() => 0.5 - Math.random());
-            const selectedQuestions = shuffled.slice(0, Math.min(numQuestions, filteredQuestions.length));
-
-            // Generate worksheet
-            displayWorksheet(selectedQuestions, topic, showAnswers);
-        }
-
-        function displayWorksheet(questions, topic, showAnswers) {
-            const worksheetDiv = document.getElementById('worksheet');
-            const titleDiv = document.getElementById('worksheetTitle');
-            const infoDiv = document.getElementById('worksheetInfo');
-            const questionsDiv = document.getElementById('questions');
-            const paperType = document.getElementById('paperType').value;
-
-            // Apply paper type class
-            questionsDiv.className = '';
-            if (paperType === 'squared-10mm') {
-                questionsDiv.classList.add('squared-paper');
-            } else if (paperType === 'squared-5mm') {
-                questionsDiv.classList.add('squared-paper-small');
-            }
-
-            // Set header
-            const difficultyText = selectedDifficulties.length > 0 ? ` (${selectedDifficulties.join('/')})` : '';
-            titleDiv.textContent = `${topic}${difficultyText} - Practice Worksheet`;
-            const totalMarks = questions.reduce((sum, q) => sum + q.marks, 0);
-            infoDiv.textContent = `${questions.length} questions | ${totalMarks} marks | Generated: ${new Date().toLocaleDateString()}`;
-
-            // Generate questions HTML
-            questionsDiv.innerHTML = questions.map((q, index) => {
-                const needsAnswer = q.answer === 'NEEDS_ANSWER' || !q.answer;
-                const needsAnswerStyle = needsAnswer && editMode ? 'border-left: 4px solid #c62828;' : '';
-                const needsAnswerBadge = needsAnswer && editMode ? '<span style="background: #c62828; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px; margin-left: 8px;">⚠️ NEEDS ANSWER</span>' : '';
-                
-                return `
-                <div class="question" data-question-id="${q.id}" ${editMode ? `style="cursor: pointer; border-left: 4px solid ${needsAnswer ? '#c62828' : '#ff9800'};"` : needsAnswerStyle} ${editMode ? `onclick="editQuestion(${q.id})"` : ''}>
-                    ${editMode ? `<div style="background: ${needsAnswer ? '#ffebee' : '#fff3e0'}; padding: 8px; border-radius: 3px; margin-bottom: 10px; font-size: 12px; color: ${needsAnswer ? '#c62828' : '#e65100'};">🖊️ Click to edit ${needsAnswer ? '(ANSWER MISSING!)' : ''}</div>` : ''}
-                    <div class="question-header">
-                        <span class="question-number">Question ${index + 1}${needsAnswerBadge}</span>
-                        <div class="question-badges">
-                            <span class="difficulty-badge difficulty-${q.difficulty.toLowerCase()}">${q.difficulty}</span>
-                            <span class="question-marks">${q.marks} mark${q.marks > 1 ? 's' : ''}</span>
-                        </div>
-                    </div>
-                    <div class="question-text">${q.question}</div>
-                    ${editMode ? `<div style="font-size: 12px; color: #666; margin-top: 10px;">📌 Topics: ${q.topic.join(', ')}</div>` : ''}
-                    <div class="question-meta">Year: ${q.year} | Paper: ${q.paper} | Q${q.question_number}</div>
-                    ${showAnswers ? `
-                        <div class="answer">
-                            <div class="answer-label">Answer:</div>
-                            <div class="answer-text">${q.answer}</div>
-                        </div>
-                    ` : ''}
-                </div>
-            `}).join('');
-
-            // Show worksheet
-            worksheetDiv.style.display = 'block';
-            
-            // Add download button if in edit mode
-            if (editMode) {
-                const existingBtn = document.getElementById('downloadDbBtn');
-                if (!existingBtn) {
-                    const downloadBtn = document.createElement('button');
-                    downloadBtn.id = 'downloadDbBtn';
-                    downloadBtn.className = 'download-btn';
-                    downloadBtn.textContent = '💾 Download Updated Database';
-                    downloadBtn.onclick = downloadUpdatedDatabase;
-                    worksheetDiv.appendChild(downloadBtn);
-                }
-            } else {
-                const existingBtn = document.getElementById('downloadDbBtn');
-                if (existingBtn) {
-                    existingBtn.remove();
-                }
-            }
-            
-            worksheetDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function printWorksheet(withAnswers) {
-            // Set CSS variable to control answer visibility
-            if (withAnswers) {
-                document.documentElement.style.setProperty('--print-answers', 'block');
-            } else {
-                document.documentElement.style.setProperty('--print-answers', 'none');
-            }
-
-            window.print();
+            alert('✅ Downloaded! Replace your old questions.json with this file.');
         }
     </script>
 </body>
